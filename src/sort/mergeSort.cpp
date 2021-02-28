@@ -14,57 +14,56 @@ returnToEarth::Planet* MergeSort::mergeSort(returnToEarth::Planet* list, int lef
     returnToEarth::Planet* orderedList = list;
 
     if (left < right) {
-        int half = (left + right)/2;
-        mergeSort(orderedList, left, half);
-        mergeSort(orderedList, half+1, right);
-        orderedList = this->merge(orderedList, left, half, right);
+        int middle = (left + right)/2;
+        mergeSort(orderedList, left, middle);
+        mergeSort(orderedList, middle+1, right);
+        this->merge(orderedList, left, middle, right);
     }
     
     return orderedList;
 }
 
 
-returnToEarth::Planet* MergeSort::merge(returnToEarth::Planet* list, int left, int half, int right) {
-    int numberOfElementsInLeftArray = half - left + 1;
-    int numberOfElementsInRightArray = right - half;
+returnToEarth::Planet* MergeSort::merge(returnToEarth::Planet* list, int left, int middle, int right) {
+    int numberOfElementsInLeftArray = middle - left + 1;
+    int numberOfElementsInRightArray = right - middle;
 
     returnToEarth::Planet leftArray[numberOfElementsInLeftArray];
     returnToEarth::Planet rightArray[numberOfElementsInRightArray];
-    returnToEarth::Planet* orderedList = new returnToEarth::Planet[numberOfElementsInLeftArray + numberOfElementsInRightArray];
+
+    for (int i = 0; i < numberOfElementsInLeftArray; i++) {
+        leftArray[i] = list[left + i];
+    }
+    for (int j = 0; j < numberOfElementsInRightArray; j++) {
+        rightArray[j] = list[middle + 1 + j];
+    }
 
     int i = 0;
-    for (i = 0; i < numberOfElementsInLeftArray; i++) {
-        leftArray[i] = list[left+i];
-    }
-    for (i = 0; i < numberOfElementsInRightArray; i++) {
-        rightArray[i] = list[half + 1 + i];
-    }
-
-    i = 0;
     int j = 0;
-    int k = 0;
+    int k = left;
+
     while (i < numberOfElementsInLeftArray && j < numberOfElementsInRightArray) {
-        if (leftArray[i].getDistanceFromEarth() <= rightArray[j].getDistanceFromEarth()) {
-            orderedList[k] = leftArray[i];
+        if (leftArray[i].getDistanceFromEarth() > rightArray[j].getDistanceFromEarth()) {
+            list[k] = leftArray[i];
             i++;
         } else {
-            orderedList[k] = rightArray[i];
+            list[k] = rightArray[j];
             j++;
         }
         k++;
     }
 
-
-    if (k < numberOfElementsInLeftArray + numberOfElementsInRightArray) {
-        for (; i < numberOfElementsInLeftArray; i++) {
-            orderedList[k] = leftArray[i];
-            k++;
-        }
-        for (; j < numberOfElementsInRightArray; j++) {
-            orderedList[k] = rightArray[j];
-            k++;
-        }
+    while (i < numberOfElementsInLeftArray) {
+        list[k] = leftArray[i];
+        i++;
+        k++;
     }
 
-    return orderedList;
+    while (j < numberOfElementsInRightArray) {
+        list[k] = rightArray[j];
+        j++;
+        k++;
+    }
+
+    return list;
 }

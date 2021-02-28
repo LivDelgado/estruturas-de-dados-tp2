@@ -32,6 +32,7 @@ int main(int argc, char* argv[]) {
         std::cout << (&ordered[2])->getName() << std::endl;
         std::cout << (&ordered[3])->getName() << std::endl;
         std::cout << (&ordered[4])->getName() << std::endl;
+
     } catch (char const* excecao){
         std::cout << excecao << std::endl;
         return 0;

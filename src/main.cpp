@@ -3,7 +3,7 @@
 
 #include "read/fileReader.hpp"
 #include "read/converter.hpp"
-#include "sort/insertionSort.hpp"
+#include "sort/mergeSort.hpp"
 
 int main(int argc, char* argv[]) {
     std::system("clear");
@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
         read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
         returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
 
-        sort::InsertionSort* sorter = new sort::InsertionSort();
+        sort::MergeSort* sorter = new sort::MergeSort();
         returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
 
         std::cout << (&ordered[0])->getName() << std::endl;

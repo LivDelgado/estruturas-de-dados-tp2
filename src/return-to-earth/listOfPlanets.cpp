@@ -96,14 +96,18 @@ void ListOfPlanets::addPlanetAtTheBeginning(Planet* planet) {
 }
 
 void ListOfPlanets::addPlanetAtTheEnd(Planet* planet) {
-    PlanetNode* newPlanet = new PlanetNode(planet);
-    PlanetNode* currentLastPlanet = this->lastPlanet;
+    if (this->size == 0) {
+        this->addPlanetAtTheBeginning(planet);
+    } else {
+        PlanetNode* newPlanet = new PlanetNode(planet);
+        PlanetNode* currentLastPlanet = this->lastPlanet;
 
-    this->lastPlanet = newPlanet;
-    currentLastPlanet->setNextPlanetNode(newPlanet);
-    newPlanet->setPreviousPlanetNode(currentLastPlanet);
+        this->lastPlanet = newPlanet;
+        currentLastPlanet->setNextPlanetNode(newPlanet);
+        newPlanet->setPreviousPlanetNode(currentLastPlanet);
 
-    this->incrementSize();
+        this->incrementSize();
+    }
 }
 
 Planet* ListOfPlanets::removePlanet(int position) {

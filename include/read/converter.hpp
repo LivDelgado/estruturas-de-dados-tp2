@@ -16,7 +16,7 @@ namespace read {
             Converter(std::string* fileLines, int numberOfLinesToRead);
             ~Converter();
 
-            returnToEarth::ListOfPlanets* convertFileLinesToListOfPlanets();
+            returnToEarth::Planet* convertFileLinesToListOfPlanets();
     };
 }
 

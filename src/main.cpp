@@ -3,7 +3,7 @@
 
 #include "read/fileReader.hpp"
 #include "read/converter.hpp"
-#include "return-to-earth/listOfPlanets.hpp"
+#include "sort/insertionSort.hpp"
 
 int main(int argc, char* argv[]) {
     std::system("clear");
@@ -21,11 +21,17 @@ int main(int argc, char* argv[]) {
         read::FileReader* fileReader = new read::FileReader();
         std::string* linesOfFile = fileReader->readFile(filePath, numberOfLinesToRead);
 
-        std::cout << "gonna convert" << std::endl;
         read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
-        returnToEarth::ListOfPlanets* list = converter->convertFileLinesToListOfPlanets();
+        returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
 
-        std::cout << list->getLastPlanet()->getName() << std::endl;
+        sort::InsertionSort* sorter = new sort::InsertionSort();
+        returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
+
+        std::cout << (&ordered[0])->getName() << std::endl;
+        std::cout << (&ordered[1])->getName() << std::endl;
+        std::cout << (&ordered[2])->getName() << std::endl;
+        std::cout << (&ordered[3])->getName() << std::endl;
+        std::cout << (&ordered[4])->getName() << std::endl;
     } catch (char const* excecao){
         std::cout << excecao << std::endl;
         return 0;

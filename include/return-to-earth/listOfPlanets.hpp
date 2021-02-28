@@ -12,8 +12,6 @@ namespace returnToEarth {
 
             void clearList();
 
-            PlanetNode* getNodeAtPosition(int position);
-
             void validatePositionTooSmall(int position);
             void validatePositionGreaterThanSize(int position);
             void validatePosition(int position);
@@ -26,6 +24,8 @@ namespace returnToEarth {
             ~ListOfPlanets();
 
             int length();
+
+            PlanetNode* getNodeAtPosition(int position);
             
             void addPlanet(Planet* planet, int position);
             void addPlanetAtTheBeginning(Planet* planet);

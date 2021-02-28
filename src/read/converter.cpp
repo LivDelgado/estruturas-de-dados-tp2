@@ -39,12 +39,12 @@ returnToEarth::Planet* Converter::convertLineToPlanet(std::string line) {
     return newPlanet;
 }
 
-returnToEarth::ListOfPlanets* Converter::convertFileLinesToListOfPlanets() {
-    returnToEarth::ListOfPlanets* list = new returnToEarth::ListOfPlanets();
+returnToEarth::Planet* Converter::convertFileLinesToListOfPlanets() {
+    returnToEarth::Planet* list = new returnToEarth::Planet[this->numberOfLinesToRead];
 
-    for (int i = 0; i < numberOfLinesToRead; i++) {
+    for (int i = 0; i < this->numberOfLinesToRead; i++) {
         returnToEarth::Planet* newPlanet = this->convertLineToPlanet(this->fileLines[i]);
-       list->addPlanetAtTheEnd(newPlanet);
+        list[i] = *newPlanet;
     }
 
     return list;

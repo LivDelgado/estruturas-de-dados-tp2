@@ -18,7 +18,7 @@ returnToEarth::Planet* InsertionSort::sort(returnToEarth::Planet* list, int numb
     
         while (
             (j >= 0) && 
-            (aux.getDistanceFromEarth() > (&orderedList[j])->getDistanceFromEarth())
+            (aux.getDistanceFromEarth() >= (&orderedList[j])->getDistanceFromEarth())
         ) {
             orderedList[j+1] = orderedList[j];
             j--;

@@ -37,11 +37,11 @@ void QuickSort::partition(returnToEarth::Planet* list, int left, int right, int*
     pivot = list[pivotPosition];
 
     do {
-        while (pivot.getDistanceFromEarth() > list[*i].getDistanceFromEarth()) {
+        while (pivot.getDistanceFromEarth() <= list[*i].getDistanceFromEarth()) {
             (*i)++;
         }
 
-        while (pivot.getDistanceFromEarth() < list[*j].getDistanceFromEarth()) {
+        while (pivot.getDistanceFromEarth() >= list[*j].getDistanceFromEarth()) {
             (*j)--;
         }
 

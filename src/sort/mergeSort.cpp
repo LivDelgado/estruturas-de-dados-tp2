@@ -43,7 +43,7 @@ returnToEarth::Planet* MergeSort::merge(returnToEarth::Planet* list, int left, i
     int k = left;
 
     while (i < numberOfElementsInLeftArray && j < numberOfElementsInRightArray) {
-        if (leftArray[i].getDistanceFromEarth() > rightArray[j].getDistanceFromEarth()) {
+        if (leftArray[i].getDistanceFromEarth() >= rightArray[j].getDistanceFromEarth()) {
             list[k] = leftArray[i];
             i++;
         } else {

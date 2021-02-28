@@ -2,7 +2,7 @@
 #define CONVERTER
 
 #include <string>
-#include "return-to-earth/listOfPlanets.hpp"
+#include "return-to-earth/planet.hpp"
 
 namespace read {
     class Converter {

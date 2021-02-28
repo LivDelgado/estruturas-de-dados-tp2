@@ -1,7 +1,7 @@
 #ifndef INSERTION
 #define INSERTION
 
-#include "return-to-earth/listOfPlanets.hpp"
+#include "return-to-earth/planet.hpp"
 
 namespace sort {
     class InsertionSort {

@@ -3,7 +3,10 @@
 
 #include "read/fileReader.hpp"
 #include "read/converter.hpp"
+#include "sort/insertionSort.hpp"
+#include "sort/mergeSort.hpp"
 #include "sort/quickSortOptimized.hpp"
+#include "sort/quickSort.hpp"
 
 int main(int argc, char* argv[]) {
     std::system("clear");
@@ -27,11 +30,9 @@ int main(int argc, char* argv[]) {
         sort::QuickSortOptimized* sorter = new sort::QuickSortOptimized();
         returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
 
-        std::cout << (&ordered[0])->getName() << std::endl;
-        std::cout << (&ordered[1])->getName() << std::endl;
-        std::cout << (&ordered[2])->getName() << std::endl;
-        std::cout << (&ordered[3])->getName() << std::endl;
-        std::cout << (&ordered[4])->getName() << std::endl;
+        for (int i = 0; i < numberOfLinesToRead; i++) {
+            std::cout << (&ordered[i])->getName() << ", " << (&ordered[i])->getDistanceFromEarth() << std::endl;
+        }
 
     } catch (char const* excecao){
         std::cout << excecao << std::endl;

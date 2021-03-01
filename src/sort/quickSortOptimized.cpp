@@ -26,19 +26,13 @@ void QuickSortOptimized::quickSort(returnToEarth::Planet* list, int left, int ri
 		right = stack[top--]; 
 		left = stack[top--]; 
 
-		// Set pivot element at its correct position 
-		// in sorted array 
 		int pivot = partition(list, left, right); 
 
-		// If there are elements on left side of pivot, 
-		// then push left side to stack 
 		if (pivot - 1 > left) { 
 			stack[++top] = left; 
 			stack[++top] = pivot - 1; 
 		} 
 
-		// If there are elements on right side of pivot, 
-		// then push right side to stack 
 		if (pivot + 1 < right) { 
 			stack[++top] = pivot + 1; 
 			stack[++top] = right;
@@ -46,24 +40,24 @@ void QuickSortOptimized::quickSort(returnToEarth::Planet* list, int left, int ri
 	} 
 }
 
-
-void QuickSortOptimized::swap(returnToEarth::Planet* a, returnToEarth::Planet* b) { 
-	returnToEarth::Planet t = *a; 
-	*a = *b; 
-	*b = t; 
+void QuickSortOptimized::swap(returnToEarth::Planet* a, returnToEarth::Planet* b) {
+	returnToEarth::Planet aux = *a;
+	*a = *b;
+	*b = aux;
 } 
 
-int QuickSortOptimized::partition(returnToEarth::Planet* list, int l, int h) { 
-	returnToEarth::Planet x = list[h]; 
-	int i = (l - 1); 
+int QuickSortOptimized::partition(returnToEarth::Planet* list, int left, int right) {
+	returnToEarth::Planet auxiliar = list[right];
+	int i = (left - 1);
 
-	for (int j = l; j <= h - 1; j++) { 
-		if (list[j].getDistanceFromEarth() >= x.getDistanceFromEarth()) { 
-			i++; 
-			swap(&list[i], &list[j]); 
-		} 
-	} 
-	swap(&list[i + 1], &list[h]); 
+	for (int j = left; j <= right - 1; j++) {
+		if (list[j].getDistanceFromEarth() >= auxiliar.getDistanceFromEarth()) {
+			i++;
+			swap(&list[i], &list[j]);
+		}
+	}
 
-	return (i + 1); 
-} 
+	swap(&list[i + 1], &list[right]);
+
+	return (i+1);
+}

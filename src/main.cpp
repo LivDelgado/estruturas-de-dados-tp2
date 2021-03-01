@@ -7,6 +7,7 @@
 #include "sort/mergeSort.hpp"
 #include "sort/quickSortOptimized.hpp"
 #include "sort/quickSort.hpp"
+#include "sort/combSort.hpp"
 
 int main(int argc, char* argv[]) {
     std::system("clear");
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
         read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
         returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
 
-        sort::QuickSortOptimized* sorter = new sort::QuickSortOptimized();
+        sort::CombSort* sorter = new sort::CombSort();
         returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
 
         for (int i = 0; i < numberOfLinesToRead; i++) {

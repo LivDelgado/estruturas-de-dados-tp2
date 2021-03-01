@@ -3,11 +3,11 @@
 
 #include "read/fileReader.hpp"
 #include "read/converter.hpp"
-#include "sort/insertionSort.hpp"
-#include "sort/mergeSort.hpp"
+#include "sort/performanceMeasure.hpp"
 #include "sort/quickSortOptimized.hpp"
-#include "sort/quickSort.hpp"
-#include "sort/combSort.hpp"
+
+#define NUMBER_OF_LINES_TO_PRINT 7
+#define MAXIMUM 200000
 
 int main(int argc, char* argv[]) {
     std::system("clear");
@@ -23,18 +23,27 @@ int main(int argc, char* argv[]) {
 
     try {
         read::FileReader* fileReader = new read::FileReader();
-        std::string* linesOfFile = fileReader->readFile(filePath, numberOfLinesToRead);
 
-        read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
-        returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
+        if (argc == 4 && std::stoi(argv[3]) == 1) {
+            std::string* linesOfFile = fileReader->readFile(filePath, MAXIMUM);
+            read::Converter* converter = new read::Converter(linesOfFile, MAXIMUM);
+            returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
 
-        sort::CombSort* sorter = new sort::CombSort();
-        returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
+            sort::PerformanceMeasure* performanceMeasure = new sort::PerformanceMeasure();
+            performanceMeasure->measurePerformanceForAllCases(list);
+        } else {
+            std::string* linesOfFile = fileReader->readFile(filePath, numberOfLinesToRead);
 
-        for (int i = 0; i < numberOfLinesToRead; i++) {
-            std::cout << (&ordered[i])->getName() << ", " << (&ordered[i])->getDistanceFromEarth() << std::endl;
+            read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
+            returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
+
+            sort::QuickSortOptimized* sorter = new sort::QuickSortOptimized();
+            returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
+
+            for (int i = 0; i < NUMBER_OF_LINES_TO_PRINT; i++) {
+                std::cout << (&ordered[i])->getName() << " " << (&ordered[i])->getDistanceFromEarth() << std::endl;
+            }
         }
-
     } catch (char const* excecao){
         std::cout << excecao << std::endl;
         return 0;

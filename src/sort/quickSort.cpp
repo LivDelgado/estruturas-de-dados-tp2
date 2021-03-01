@@ -15,43 +15,34 @@ returnToEarth::Planet* QuickSort::sort(returnToEarth::Planet* list, int numberOf
 }
 
 void QuickSort::quickSort(returnToEarth::Planet* list, int left, int right) {
-    int i, j;
+    int pivot;
 
-    partition(list, left, right, &i, &j);
-    if (left < j) {
-        quickSort(list, left, j);
-    }
-    if (i < right) {
-        quickSort(list, i, right);
+    if (left < right) {
+        pivot = partition(list, left, right);
+        quickSort(list, left, pivot-1);
+        quickSort(list, pivot+1, right);
     }
 }
 
-void QuickSort::partition(returnToEarth::Planet* list, int left, int right, int* i, int* j) {
-    returnToEarth::Planet pivot;
-    returnToEarth::Planet aux;
-
-    *i = left;
-    *j = right;
-
-    int pivotPosition = (*i + *j)/2;
-    pivot = list[pivotPosition];
-
-    do {
-        while (pivot.getDistanceFromEarth() <= list[*i].getDistanceFromEarth()) {
-            (*i)++;
+int QuickSort::partition(returnToEarth::Planet* list, int left, int right) {
+    returnToEarth::Planet pivot = list[(left+right)/2];
+    int i = (left - 1);
+ 
+    for (int j = left; j <= right - 1; j++) {
+        if (list[j].getDistanceFromEarth() >= pivot.getDistanceFromEarth())
+        {
+            i++;
+            swap(&list[i], &list[j]);
         }
+    }
+    swap(&list[i + 1], &list[right]);
 
-        while (pivot.getDistanceFromEarth() >= list[*j].getDistanceFromEarth()) {
-            (*j)--;
-        }
-
-        if (*i <= *j) {
-            aux = list[*i];
-            list[*i] = list[*j];
-            list[*j] = aux;
-            
-            (*i)++;
-            (*j)--;
-        }
-    } while(*i <= *j);
+    return (i + 1);
 }
+
+void QuickSort::swap(returnToEarth::Planet* a, returnToEarth::Planet* b) {
+	returnToEarth::Planet aux = *a;
+	*a = *b;
+	*b = aux;
+}
+

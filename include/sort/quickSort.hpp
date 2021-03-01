@@ -7,7 +7,9 @@ namespace sort {
     class QuickSort {
         private:
             void quickSort(returnToEarth::Planet* list, int left, int right);
-            void partition(returnToEarth::Planet* list, int left, int right, int* i, int* j);
+            int partition(returnToEarth::Planet* list, int left, int right);
+
+            void swap(returnToEarth::Planet* a, returnToEarth::Planet* b);
 
         public:
             QuickSort();

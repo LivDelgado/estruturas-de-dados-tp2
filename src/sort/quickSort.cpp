@@ -20,7 +20,7 @@ void QuickSort::quickSort(returnToEarth::Planet* list, int left, int right) {
     }
 }
 
-int QuickSort::partition(returnToEarth::Planet list[], int left, int right) {
+int QuickSort::partition(returnToEarth::Planet* list, int left, int right) {
     returnToEarth::Planet pivot = list[(right-left)/2];
     int p = left;
  

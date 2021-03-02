@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
             read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
             returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
 
-            sort::QuickSortOptimized* sorter = new sort::QuickSortOptimized();
+            sort::CombSort* sorter = new sort::CombSort();
             returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
 
             for (int i = 0; i < NUMBER_OF_LINES_TO_PRINT; i++) {

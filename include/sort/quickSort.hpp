@@ -9,8 +9,6 @@ namespace sort {
             void quickSort(returnToEarth::Planet* list, int left, int right);
             int partition(returnToEarth::Planet* list, int left, int right);
 
-            void swap(returnToEarth::Planet* a, returnToEarth::Planet* b);
-
         public:
             QuickSort();
             ~QuickSort();

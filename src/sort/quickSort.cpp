@@ -8,41 +8,30 @@ QuickSort::~QuickSort() {}
 
 returnToEarth::Planet* QuickSort::sort(returnToEarth::Planet* list, int numberOfLinesToSort) {
     returnToEarth::Planet* orderedList = list;
-
     quickSort(list, 0, numberOfLinesToSort - 1);
-
     return orderedList;
 }
 
 void QuickSort::quickSort(returnToEarth::Planet* list, int left, int right) {
-    int pivot;
-
     if (left < right) {
-        pivot = partition(list, left, right);
-        quickSort(list, left, pivot-1);
-        quickSort(list, pivot+1, right);
+        int pivot = partition(list, left, right);
+        quickSort(list, left, pivot - 1);
+        quickSort(list, pivot + 1, right);
     }
 }
 
-int QuickSort::partition(returnToEarth::Planet* list, int left, int right) {
-    returnToEarth::Planet pivot = list[(left+right)/2];
-    int i = (left - 1);
+int QuickSort::partition(returnToEarth::Planet list[], int left, int right) {
+    returnToEarth::Planet pivot = list[(right-left)/2];
+    int p = left;
  
-    for (int j = left; j <= right - 1; j++) {
-        if (list[j].getDistanceFromEarth() >= pivot.getDistanceFromEarth())
-        {
-            i++;
-            swap(&list[i], &list[j]);
+    for (int i = left; i < right; i++) {
+        if (list[i].getDistanceFromEarth() >= pivot.getDistanceFromEarth()) {
+            std::swap(list[i], list[p]);
+            p++;
         }
     }
-    swap(&list[i + 1], &list[right]);
 
-    return (i + 1);
+    std::swap(list[p], list[right]);
+
+    return p;
 }
-
-void QuickSort::swap(returnToEarth::Planet* a, returnToEarth::Planet* b) {
-	returnToEarth::Planet aux = *a;
-	*a = *b;
-	*b = aux;
-}
-

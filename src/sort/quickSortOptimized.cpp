@@ -1,8 +1,6 @@
 #include "sort/quickSortOptimized.hpp"
 #include "sort/combSort.hpp"
 
-#define MAX_PARTITION_SIZE 20
-
 using namespace sort;
 
 QuickSortOptimized::QuickSortOptimized() {}
@@ -15,38 +13,53 @@ returnToEarth::Base* QuickSortOptimized::sort(returnToEarth::Base* list, int num
     return orderedList;
 }
 
+
 void QuickSortOptimized::quickSort(returnToEarth::Base* list, int left, int right) {
-    while (left < right)
-    {
-        if ((right - left) < MAX_PARTITION_SIZE) {
-            CombSort* sorter = new CombSort();
-            sorter->sort(list, right);
-            break;
-        } else {
-            int pivot = partition(list, left, right);
-            if ((pivot - left) < (right - pivot)) {
-                quickSort(list, left, pivot - 1);
-                left = pivot + 1;
-            } else {
-                quickSort(list, pivot + 1, right);
-                right = pivot - 1;
-            }
-        }
-    }
+    int i;
+    int j;
+
+    partition(list, left, right, &i, &j);
+    if (left < j) 
+        quickSort(list, left, j);
+    if (i < right)
+        quickSort(list, i, right);
 }
 
-int QuickSortOptimized::partition(returnToEarth::Base* list, int left, int right) {
-    returnToEarth::Base pivot = list[(right-left)/2];
-    int p = left;
- 
-    for (int i = left; i < right; i++) {
-        if (list[i].getDistanceFromEarth() >= pivot.getDistanceFromEarth()) {
-            std::swap(list[i], list[p]);
-            p++;
+
+void QuickSortOptimized::partition(returnToEarth::Base* list, int left, int right, int *i, int *j) {
+    returnToEarth::Base pivot;
+    *i = left;
+    *j = right;
+    pivot = getPivot(list, *i, *j);
+
+    do {
+        while (pivot.getDistanceFromEarth() < list[*i].getDistanceFromEarth()) (*i)++;
+        while (pivot.getDistanceFromEarth() > list[*j].getDistanceFromEarth()) (*j)--;
+
+        if (*i <= *j) {
+            std::swap(list[*i], list[*j]);
+            (*i)++;
+            (*j)--;
         }
+    } while (*i <= *j);
+}
+
+returnToEarth::Base QuickSortOptimized::getPivot(returnToEarth::Base* list, int left, int right) {
+    int indexA = left;
+    int indexB = (right-left)/2;
+    int indexC = right-1;
+
+    if (list[indexA].getDistanceFromEarth() > list[indexB].getDistanceFromEarth()) {
+        if (list[indexB].getDistanceFromEarth() > list[indexC].getDistanceFromEarth()) 
+            return list[indexB];
+        if (list[indexC].getDistanceFromEarth() > list[indexA].getDistanceFromEarth())
+            return list[indexA];
+        return list[indexC];
     }
-
-    std::swap(list[p], list[right]);
-
-    return p;
+    if (list[indexA].getDistanceFromEarth() > list[indexC].getDistanceFromEarth()) 
+        return list[indexA];
+    if (list[indexB].getDistanceFromEarth() > list[indexC].getDistanceFromEarth())
+        return list[indexC];
+    
+    return list[indexB];
 }

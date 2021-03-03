@@ -13,25 +13,29 @@ returnToEarth::Base* QuickSort::sort(returnToEarth::Base* list, int numberOfLine
 }
 
 void QuickSort::quickSort(returnToEarth::Base* list, int left, int right) {
-    if (left < right) {
-        int pivot = partition(list, left, right);
-        quickSort(list, left, pivot - 1);
-        quickSort(list, pivot + 1, right);
-    }
+    int i;
+    int j;
+    partition(list, left, right, &i, &j);
+    if (left < j) 
+        quickSort(list, left, j);
+    if (i < right)
+        quickSort(list, i, right);
 }
 
-int QuickSort::partition(returnToEarth::Base* list, int left, int right) {
-    returnToEarth::Base pivot = list[(right-left)/2];
-    int p = left;
- 
-    for (int i = left; i < right; i++) {
-        if (list[i].getDistanceFromEarth() >= pivot.getDistanceFromEarth()) {
-            std::swap(list[i], list[p]);
-            p++;
+void QuickSort::partition(returnToEarth::Base* list, int left, int right, int *i, int *j) {
+    returnToEarth::Base pivot;
+    *i = left;
+    *j = right;
+    pivot = list[(*i + *j)/2];
+
+    do {
+        while (pivot.getDistanceFromEarth() < list[*i].getDistanceFromEarth()) (*i)++;
+        while (pivot.getDistanceFromEarth() > list[*j].getDistanceFromEarth()) (*j)--;
+
+        if (*i <= *j) {
+            std::swap(list[*i], list[*j]);
+            (*i)++;
+            (*j)--;
         }
-    }
-
-    std::swap(list[p], list[right]);
-
-    return p;
+    } while (*i <= *j);
 }

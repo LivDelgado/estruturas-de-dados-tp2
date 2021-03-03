@@ -7,7 +7,8 @@ namespace sort {
     class QuickSortOptimized {
         private:
             void quickSort(returnToEarth::Base* list, int left, int right);
-            int partition(returnToEarth::Base* list, int l, int h);
+            void partition(returnToEarth::Base* list, int left, int right, int *i, int *j);
+            returnToEarth::Base getPivot(returnToEarth::Base* list, int left, int right);
 
         public:
             QuickSortOptimized();

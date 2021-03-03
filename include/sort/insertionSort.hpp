@@ -1,7 +1,7 @@
 #ifndef INSERTION
 #define INSERTION
 
-#include "return-to-earth/planet.hpp"
+#include "return-to-earth/base.hpp"
 
 namespace sort {
     class InsertionSort {
@@ -9,7 +9,7 @@ namespace sort {
             InsertionSort();
             ~InsertionSort();
 
-            returnToEarth::Planet* sort(returnToEarth::Planet* list, int numberOfLinesToSort);
+            returnToEarth::Base* sort(returnToEarth::Base* list, int numberOfLinesToSort);
     };
 }
 

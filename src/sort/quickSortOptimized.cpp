@@ -9,13 +9,13 @@ QuickSortOptimized::QuickSortOptimized() {}
 
 QuickSortOptimized::~QuickSortOptimized() {}
 
-returnToEarth::Planet* QuickSortOptimized::sort(returnToEarth::Planet* list, int numberOfLinesToSort) {
-    returnToEarth::Planet* orderedList = list;
+returnToEarth::Base* QuickSortOptimized::sort(returnToEarth::Base* list, int numberOfLinesToSort) {
+    returnToEarth::Base* orderedList = list;
     quickSort(list, 0, numberOfLinesToSort - 1);
     return orderedList;
 }
 
-void QuickSortOptimized::quickSort(returnToEarth::Planet* list, int left, int right) {
+void QuickSortOptimized::quickSort(returnToEarth::Base* list, int left, int right) {
     while (left < right)
     {
         if ((right - left) < MAX_PARTITION_SIZE) {
@@ -35,8 +35,8 @@ void QuickSortOptimized::quickSort(returnToEarth::Planet* list, int left, int ri
     }
 }
 
-int QuickSortOptimized::partition(returnToEarth::Planet* list, int left, int right) {
-    returnToEarth::Planet pivot = list[(right-left)/2];
+int QuickSortOptimized::partition(returnToEarth::Base* list, int left, int right) {
+    returnToEarth::Base pivot = list[(right-left)/2];
     int p = left;
  
     for (int i = left; i < right; i++) {

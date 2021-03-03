@@ -1,19 +1,19 @@
 #ifndef COMB
 #define COMB
 
-#include "return-to-earth/planet.hpp"
+#include "return-to-earth/base.hpp"
 
 namespace sort {
     class CombSort {
         private:
             int getNextGap(int gap);
-            void swap(returnToEarth::Planet* a, returnToEarth::Planet* b);
+            void swap(returnToEarth::Base* a, returnToEarth::Base* b);
 
         public:
             CombSort();
             ~CombSort();
 
-            returnToEarth::Planet* sort(returnToEarth::Planet* list, int numberOfLinesToSort);
+            returnToEarth::Base* sort(returnToEarth::Base* list, int numberOfLinesToSort);
     };
 }
 

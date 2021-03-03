@@ -1,19 +1,19 @@
 #ifndef MERGE
 #define MERGE
 
-#include "return-to-earth/planet.hpp"
+#include "return-to-earth/base.hpp"
 
 namespace sort {
     class MergeSort {
         private:
-            returnToEarth::Planet* mergeSort(returnToEarth::Planet* list, int left, int right);
-            returnToEarth::Planet* merge(returnToEarth::Planet* list, int left, int middle, int right);
+            returnToEarth::Base* mergeSort(returnToEarth::Base* list, int left, int right);
+            returnToEarth::Base* merge(returnToEarth::Base* list, int left, int middle, int right);
 
         public:
             MergeSort();
             ~MergeSort();
 
-            returnToEarth::Planet* sort(returnToEarth::Planet* list, int numberOfLinesToSort);
+            returnToEarth::Base* sort(returnToEarth::Base* list, int numberOfLinesToSort);
     };
 }
 

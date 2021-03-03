@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
         if (argc == 4 && std::stoi(argv[3]) == 1) {
             std::string* linesOfFile = fileReader->readFile(filePath, MAXIMUM);
             read::Converter* converter = new read::Converter(linesOfFile, MAXIMUM);
-            returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
+            returnToEarth::Base* list = converter->convertFileLinesToListOfPlanets();
 
             sort::PerformanceMeasure* performanceMeasure = new sort::PerformanceMeasure();
             performanceMeasure->measurePerformanceForAllCases(list);
@@ -35,10 +35,10 @@ int main(int argc, char* argv[]) {
             std::string* linesOfFile = fileReader->readFile(filePath, numberOfLinesToRead);
 
             read::Converter* converter = new read::Converter(linesOfFile, numberOfLinesToRead);
-            returnToEarth::Planet* list = converter->convertFileLinesToListOfPlanets();
+            returnToEarth::Base* list = converter->convertFileLinesToListOfPlanets();
 
             sort::CombSort* sorter = new sort::CombSort();
-            returnToEarth::Planet* ordered = sorter->sort(list, numberOfLinesToRead);
+            returnToEarth::Base* ordered = sorter->sort(list, numberOfLinesToRead);
 
             for (int i = 0; i < NUMBER_OF_LINES_TO_PRINT; i++) {
                 std::cout << (&ordered[i])->getName() << " " << (&ordered[i])->getDistanceFromEarth() << std::endl;

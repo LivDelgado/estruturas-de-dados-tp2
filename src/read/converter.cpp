@@ -14,11 +14,11 @@ Converter::~Converter() {
     this->numberOfLinesToRead = 0;
 }
 
-returnToEarth::Planet* Converter::convertLineToPlanet(std::string line) {
+returnToEarth::Base* Converter::convertLineToPlanet(std::string line) {
     std::istringstream lineOfFile(line);
     std::string value;
 
-    returnToEarth::Planet* newPlanet = new returnToEarth::Planet();
+    returnToEarth::Base* newPlanet = new returnToEarth::Base();
 
     int counter = 0;
 
@@ -39,11 +39,11 @@ returnToEarth::Planet* Converter::convertLineToPlanet(std::string line) {
     return newPlanet;
 }
 
-returnToEarth::Planet* Converter::convertFileLinesToListOfPlanets() {
-    returnToEarth::Planet* list = new returnToEarth::Planet[this->numberOfLinesToRead];
+returnToEarth::Base* Converter::convertFileLinesToListOfPlanets() {
+    returnToEarth::Base* list = new returnToEarth::Base[this->numberOfLinesToRead];
 
     for (int i = 0; i < this->numberOfLinesToRead; i++) {
-        returnToEarth::Planet* newPlanet = this->convertLineToPlanet(this->fileLines[i]);
+        returnToEarth::Base* newPlanet = this->convertLineToPlanet(this->fileLines[i]);
         list[i] = *newPlanet;
     }
 

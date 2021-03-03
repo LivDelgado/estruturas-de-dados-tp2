@@ -2,7 +2,7 @@
 #define CONVERTER
 
 #include <string>
-#include "return-to-earth/planet.hpp"
+#include "return-to-earth/base.hpp"
 
 namespace read {
     class Converter {
@@ -10,13 +10,13 @@ namespace read {
             std::string* fileLines;
             int numberOfLinesToRead;
 
-            returnToEarth::Planet* convertLineToPlanet(std::string line);
+            returnToEarth::Base* convertLineToPlanet(std::string line);
         
         public:
             Converter(std::string* fileLines, int numberOfLinesToRead);
             ~Converter();
 
-            returnToEarth::Planet* convertFileLinesToListOfPlanets();
+            returnToEarth::Base* convertFileLinesToListOfPlanets();
     };
 }
 

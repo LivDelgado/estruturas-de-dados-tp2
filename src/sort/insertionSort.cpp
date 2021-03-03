@@ -6,11 +6,11 @@ InsertionSort::InsertionSort() {}
 
 InsertionSort::~InsertionSort() {}
 
-returnToEarth::Planet* InsertionSort::sort(returnToEarth::Planet* list, int numberOfLinesToSort) {
+returnToEarth::Base* InsertionSort::sort(returnToEarth::Base* list, int numberOfLinesToSort) {
     int i, j;
 
-    returnToEarth::Planet* orderedList = list;
-    returnToEarth::Planet aux;
+    returnToEarth::Base* orderedList = list;
+    returnToEarth::Base aux;
     
     for (i = 1; i < numberOfLinesToSort; i++) {
         aux = orderedList[i];

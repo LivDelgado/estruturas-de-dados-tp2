@@ -4,14 +4,14 @@
 #define PLANET
 
 namespace returnToEarth {
-    class Planet {
+    class Base {
         private:
             std::string name;
             int distanceFromEarth;
         public:
-            Planet(std::string name, int distanceFromEarth);
-            Planet();
-            ~Planet();
+            Base(std::string name, int distanceFromEarth);
+            Base();
+            ~Base();
 
             void setName(std::string name);
             void setDistanceFromEarth(int distanceFromEarth);

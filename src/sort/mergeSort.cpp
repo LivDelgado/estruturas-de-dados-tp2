@@ -6,12 +6,12 @@ MergeSort::MergeSort() {}
 
 MergeSort::~MergeSort() {}
 
-returnToEarth::Planet* MergeSort::sort(returnToEarth::Planet* list, int numberOfLinesToSort) {
+returnToEarth::Base* MergeSort::sort(returnToEarth::Base* list, int numberOfLinesToSort) {
    return this->mergeSort(list, 0, numberOfLinesToSort-1);
 }
 
-returnToEarth::Planet* MergeSort::mergeSort(returnToEarth::Planet* list, int left, int right) {
-    returnToEarth::Planet* orderedList = list;
+returnToEarth::Base* MergeSort::mergeSort(returnToEarth::Base* list, int left, int right) {
+    returnToEarth::Base* orderedList = list;
 
     if (left < right) {
         int middle = (left + right)/2;
@@ -24,12 +24,12 @@ returnToEarth::Planet* MergeSort::mergeSort(returnToEarth::Planet* list, int lef
 }
 
 
-returnToEarth::Planet* MergeSort::merge(returnToEarth::Planet* list, int left, int middle, int right) {
+returnToEarth::Base* MergeSort::merge(returnToEarth::Base* list, int left, int middle, int right) {
     int numberOfElementsInLeftArray = middle - left + 1;
     int numberOfElementsInRightArray = right - middle;
 
-    returnToEarth::Planet leftArray[numberOfElementsInLeftArray];
-    returnToEarth::Planet rightArray[numberOfElementsInRightArray];
+    returnToEarth::Base leftArray[numberOfElementsInLeftArray];
+    returnToEarth::Base rightArray[numberOfElementsInRightArray];
 
     for (int i = 0; i < numberOfElementsInLeftArray; i++) {
         leftArray[i] = list[left + i];

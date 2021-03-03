@@ -1,19 +1,19 @@
 #ifndef QUICK
 #define QUICK
 
-#include "return-to-earth/planet.hpp"
+#include "return-to-earth/base.hpp"
 
 namespace sort {
     class QuickSort {
         private:
-            void quickSort(returnToEarth::Planet* list, int left, int right);
-            int partition(returnToEarth::Planet* list, int left, int right);
+            void quickSort(returnToEarth::Base* list, int left, int right);
+            int partition(returnToEarth::Base* list, int left, int right);
 
         public:
             QuickSort();
             ~QuickSort();
 
-            returnToEarth::Planet* sort(returnToEarth::Planet* list, int numberOfLinesToSort);
+            returnToEarth::Base* sort(returnToEarth::Base* list, int numberOfLinesToSort);
     };
 }
 

@@ -14,14 +14,14 @@ int CombSort::getNextGap(int gap) {
     return gap;
 }
 
-void CombSort::swap(returnToEarth::Planet* a, returnToEarth::Planet* b) {
-	returnToEarth::Planet aux = *a;
+void CombSort::swap(returnToEarth::Base* a, returnToEarth::Base* b) {
+	returnToEarth::Base aux = *a;
 	*a = *b;
 	*b = aux;
 } 
 
 
-returnToEarth::Planet* CombSort::sort(returnToEarth::Planet* list, int numberOfLinesToSort) {
+returnToEarth::Base* CombSort::sort(returnToEarth::Base* list, int numberOfLinesToSort) {
     int gap = numberOfLinesToSort;
     bool swapped = true;
 

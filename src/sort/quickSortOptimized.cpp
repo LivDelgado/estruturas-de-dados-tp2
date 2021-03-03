@@ -18,6 +18,12 @@ void QuickSortOptimized::quickSort(returnToEarth::Base* list, int left, int righ
     int i;
     int j;
 
+    if ((right - left) < 20) {
+        CombSort* sorter = new CombSort();
+        sorter->sort(list, right-left);
+        return;
+    }
+
     partition(list, left, right, &i, &j);
     if (left < j) 
         quickSort(list, left, j);
@@ -30,7 +36,7 @@ void QuickSortOptimized::partition(returnToEarth::Base* list, int left, int righ
     returnToEarth::Base pivot;
     *i = left;
     *j = right;
-    pivot = getPivot(list, *i, *j);
+    pivot = list[(*i + *j)/2];
 
     do {
         while (pivot.getDistanceFromEarth() < list[*i].getDistanceFromEarth()) (*i)++;
@@ -42,24 +48,4 @@ void QuickSortOptimized::partition(returnToEarth::Base* list, int left, int righ
             (*j)--;
         }
     } while (*i <= *j);
-}
-
-returnToEarth::Base QuickSortOptimized::getPivot(returnToEarth::Base* list, int left, int right) {
-    int indexA = left;
-    int indexB = (right-left)/2;
-    int indexC = right-1;
-
-    if (list[indexA].getDistanceFromEarth() > list[indexB].getDistanceFromEarth()) {
-        if (list[indexB].getDistanceFromEarth() > list[indexC].getDistanceFromEarth()) 
-            return list[indexB];
-        if (list[indexC].getDistanceFromEarth() > list[indexA].getDistanceFromEarth())
-            return list[indexA];
-        return list[indexC];
-    }
-    if (list[indexA].getDistanceFromEarth() > list[indexC].getDistanceFromEarth()) 
-        return list[indexA];
-    if (list[indexB].getDistanceFromEarth() > list[indexC].getDistanceFromEarth())
-        return list[indexC];
-    
-    return list[indexB];
 }

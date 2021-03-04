@@ -7,7 +7,6 @@ namespace sort {
     class CombSort {
         private:
             int getNextGap(int gap);
-            void swap(returnToEarth::Base* a, returnToEarth::Base* b);
 
         public:
             CombSort();

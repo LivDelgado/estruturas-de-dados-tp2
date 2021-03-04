@@ -14,13 +14,6 @@ int CombSort::getNextGap(int gap) {
     return gap;
 }
 
-void CombSort::swap(returnToEarth::Base* a, returnToEarth::Base* b) {
-	returnToEarth::Base aux = *a;
-	*a = *b;
-	*b = aux;
-} 
-
-
 returnToEarth::Base* CombSort::sort(returnToEarth::Base* list, int numberOfLinesToSort) {
     int gap = numberOfLinesToSort;
     bool swapped = true;
@@ -31,7 +24,7 @@ returnToEarth::Base* CombSort::sort(returnToEarth::Base* list, int numberOfLines
  
         for (int i = 0; i < (numberOfLinesToSort - gap); i++) {
             if (list[i].getDistanceFromEarth() < list[i+gap].getDistanceFromEarth()){
-                swap(&list[i], &list[i + gap]);
+                std::swap(list[i], list[i + gap]);
                 swapped = true;
             }
         }

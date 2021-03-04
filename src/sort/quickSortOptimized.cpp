@@ -1,6 +1,8 @@
 #include "sort/quickSortOptimized.hpp"
 #include "sort/combSort.hpp"
 
+#define MAX_PARTITION_SIZE 20
+
 using namespace sort;
 
 QuickSortOptimized::QuickSortOptimized() {}
@@ -18,7 +20,7 @@ void QuickSortOptimized::quickSort(returnToEarth::Base* list, int left, int righ
     int i;
     int j;
 
-    if ((right - left) < 20) {
+    if ((right - left) < MAX_PARTITION_SIZE) {
         CombSort* sorter = new CombSort();
         sorter->sort(list, right-left);
         return;
